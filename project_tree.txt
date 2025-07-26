@@ -1,0 +1,76 @@
+AIPE_LLM/                       ← Git repo root
+├── datasets/                   ← raw & processed data
+│   ├── raw/
+│   └── processed/
+│
+├── logs/                       ← rotating *.log files (shared logger writes here)
+│
+├── notebooks/                  ← exploratory Jupyter / Colab work
+│   └── 01_explore_transcripts.ipynb
+│
+├── src/                        ← **all importable Python packages**
+│   ├── aipe_common/            ← shared, imported everywhere
+│   │   ├── __init__.py
+│   │   ├── logger.py
+│   │   └── exception.py
+│   │
+│   ├── aipe_ingest/            ← current, production-ready package
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── components/
+│   │   │   ├── __init__.py
+│   │   │   ├── audio_downloader.py
+│   │   │   ├── transcriber.py
+│   │   │   └── postprocessor.py
+│   │   ├── pipeline/
+│   │   │   ├── __init__.py
+│   │   │   └── ingest_pipeline.py
+│   │   ├── utils/
+│   │   │   ├── __init__.py
+│   │   │   ├── io.py
+│   │   │   └── text.py
+│   │   └── cli.py              ← `$ aipe-ingest run …`
+│   │
+│   ├── aipe_data/              ← (stub) ETL / dbt helpers
+│   │   └── __init__.py
+│   │
+│   ├── aipe_model/             ← (stub) LLM training / inference utils
+│   │   └── __init__.py
+│   │
+│   └── aipe_api/               ← (stub) shared Pydantic schemas / routers
+│       └── __init__.py
+│
+├── services/                   ← **deployable micro-services**
+│   ├── ingest_service/
+│   │   ├── Dockerfile
+│   │   ├── main.py             ← FastAPI wrapper around aipe_ingest
+│   │   └── requirements.txt
+│   │
+│   ├── model_service/
+│   │   ├── Dockerfile
+│   │   ├── main.py             ← FastAPI wrapper around aipe_model
+│   │   └── requirements.txt
+│   │
+│   └── ui_service/             ← Streamlit front-end
+│       ├── Dockerfile
+│       ├── streamlit_app.py
+│       ├── requirements.txt
+│       └── .streamlit/
+│           └── config.toml
+│
+├── tests/                      ← pytest unit & integration tests
+│   └── test_audio_downloader.py
+│
+├── docker-compose.yaml         ← local orchestration for all services
+├── requirements.txt            ← dev-only tools (ruff, black, pytest …)
+├── setup.py                    ← installs **all** src/aipe_* packages
+└── README.md
+
+
+
+
+
+
+from aipe_common.logger import get_logger
+from aipe_ingest.pipeline import IngestPipeline
+
