@@ -23,8 +23,9 @@ setup(
     version='0.0.1',
     author='selbver',
     author_email='selbver@gmail.com',
-    packages=find_packages(where="src"),
     python_requires='>=3.9',
+   package_dir={"": "src"},
+    packages=find_packages(where="src", include=["aipe_*"]),
     install_requires=get_requirements('requirements.txt'),
     entry_points={
         'console_scripts': [

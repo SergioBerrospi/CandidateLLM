@@ -34,3 +34,28 @@ def error_message_detail(exc: Exception) -> str:
     filename: str = exc_tb.tb_frame.f_code.co_filename
     lineno: int = exc_tb.tb_lineno
     return f"[{filename}:{lineno}] {exc_type.__name__}: {exc}"
+
+class AIPEError(Exception):
+    """Base class for all custom errors in the AIPE codebase."""
+
+
+class AudioDownloadError(AIPEError):
+    """Raised when YouTube/yt-dl download fails."""
+
+
+class TranscriptionError(AIPEError):
+    """Raised when WhisperX transcription or diarization fails."""
+
+
+class DataValidationError(AIPEError):
+    """Raised when expected CSV/JSON structure does not match schema."""
+
+
+# Exported names
+__all__ = [
+    "AIPEError",
+    "AudioDownloadError",
+    "TranscriptionError",
+    "DataValidationError",
+    "error_message_detail",
+]
