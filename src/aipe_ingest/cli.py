@@ -14,7 +14,12 @@ import typer
 from aipe_common.logger import get_logger
 from aipe_ingest.pipeline.ingest_pipeline import IngestPipeline
 from aipe_ingest.components.postprocessor import TranscriptCleaner
-from aipe_ingest.config import RAW_DIR, PROC_DIR, CSV_SOURCES
+from aipe_ingest.config import (
+    RAW_OUTPUT_DIR,  # datasets/raw/output/
+    PROC_CLEAN_DIR,  # datasets/processed/cleaned/
+    CSV_SOURCES,
+)
+
 
 log = get_logger(__name__)
 app = typer.Typer(add_completion=False)
@@ -35,13 +40,13 @@ def fetch(
 @app.command("label")
 def label(
     raw_dir: Path = typer.Option(
-        RAW_DIR / "output", help="Folder containing WhisperX JSON files"
+        RAW_OUTPUT_DIR, help="Folder containing WhisperX JSON files"
     ),
     csv_file: Path = typer.Option(
         CSV_SOURCES, help="CSV with candidate / interviewer speaker-IDs"
     ),
     clean_dir: Path = typer.Option(
-        PROC_DIR / "cleaned", help="Destination for *_cleaned.json"
+        PROC_CLEAN_DIR, help="Destination for *_cleaned.json"
     ),
 ):
     """Re-assign speakers using metadata CSV and write *_cleaned.json."""
@@ -61,9 +66,9 @@ def prep(
 
     log.info("STEP 2/2 — label")
     TranscriptCleaner(
-        raw_json_dir=RAW_DIR / "output",
+        raw_json_dir=RAW_OUTPUT_DIR,
         csv_path=CSV_SOURCES,
-        clean_dir=PROC_DIR / "cleaned",
+        clean_dir=PROC_CLEAN_DIR,
     ).run()
 
 
