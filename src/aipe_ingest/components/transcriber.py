@@ -17,7 +17,7 @@ class WhisperXTranscriber:
     language   : str-   ISO-639-1 language code passed to WhisperX & align model.
     """
 
-    def __init__(self, model_name:str ="medium", language: str = "es", hf_token: str | None = None)
+    def __init__(self, model_name:str ="medium", language: str = "es", hf_token: str | None = None):
         self.device   = "cuda" if torch.cuda.is_available() else "cpu"
         self.language = language
         self.hf_token = hf_token

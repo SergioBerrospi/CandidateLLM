@@ -1,4 +1,6 @@
 project_tree.txt
+datasets/raw/*
+datasets/processed/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -6,6 +6,7 @@ import pandas as pd
 from aipe_common.logger import get_logger
 from aipe_common.exception import DataValidationError
 from aipe_ingest.utils import slugify
+from aipe_ingest.config import CSV_SOURCES
 
 log = get_logger(__name__)
 
@@ -22,7 +23,7 @@ class TranscriptCleaner:
     def __init__(
         self,
         raw_json_dir: Path,
-        csv_path: Path,
+        csv_path: CSV_SOURCES, # type: ignore
         clean_dir: Path,
     ):
         self.raw_dir   = raw_json_dir

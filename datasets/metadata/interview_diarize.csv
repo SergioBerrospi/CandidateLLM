@@ -1,0 +1,18 @@
+json_file_name,youtube_link,speaker_candidate,interviewer_1,interviewer_2,interviewer_3,interviewer_4,comments,final_flag
+Keiko Fujimori__2021-02-28__willax_jaime_baily.json,https://youtu.be/pk0K3biyArA?si=l1h4pVDtsLwLVJW8,SPEAKER_00,,,,,"start: 1964.011, there's a problem in the transcription",ok
+Keiko Fujimori__2024-07-12__willax_beto_ortiz.json,https://youtu.be/IuABPbxkEw8?si=dL7YUcUiLpji4M0m,SPEAKER_02,SPEAKER_00,,,,,ok
+Keiko Fujimori__2024-10-22__telemadrid.json,https://youtu.be/F5slgTccMo4?si=yxcWHhWpNSUqdT_G,SPEAKER_00,SPEAKER_01,SPEAKER_02,,,,ok
+Keiko Fujimori__2021-09-12__milagros_leiva.json,https://youtu.be/IkJ-ViO90KI?si=Fpd-Zyat8uUsJ_Ai,SPEAKER_00,SPEAKER_01,,,,,ok
+Lopez Chau__2025-05-15__modesto_montoya.json,https://youtu.be/407ivNxMKrA?si=cT58Do644hiOVC6U,SPEAKER_00,SPEAKER_01,,,,,ok
+Lopez Chau__2025-05-11__ojo_publico.json,https://youtu.be/RKgOV0nboUo?si=UXv_90mFPY0KWqw6,SPEAKER_00,SPEAKER_02,,,,,ok
+Lopez Chau__2025-03-14__revista_caretas.json,https://www.youtube.com/live/8Qkwj7BPHIE?si=kVMl_WD5-QGLFaJw,SPEAKER_01,SPEAKER_03,,,,,ok
+Lopez Chau__2025-05-17__la_rep_blica.json,https://youtu.be/bKk4KrH_QpU?si=CaEsy0j3MKKzBPSS,SPEAKER_01,SPEAKER_00,,,,,ok
+Phillip Butters__2025-06-17__habla_chino.json,https://youtu.be/h9FR2suUq04?si=9Ic3LaX3Jwg_bug5,SPEAKER_01,SPEAKER_02,,,,,ok
+Phillip Butters__2025-07-27__roro_network.json,,,,,,,failed to diarize,bad
+Phillip Butters__2025-05-22__willax_milagros_leiva.json,https://youtu.be/y8vOtrhNT6M?si=cHEsK4odRDyZ7izR,SPEAKER_01,SPEAKER_00,,,,,ok
+Phillip Butters__2025-05-16__revista_caretas.json,https://www.youtube.com/live/AdFy8NmvrLA?si=BAdWZmGiGQ6iT9Rm,SPEAKER_01,SPEAKER_00,,,,,ok
+Carlos Alvarez__2025-05-14__latina_noticias.json,https://youtu.be/lyNkd_EtUsU?si=LX3rnzPHR5-m3UtG,SPEAKER_01,SPEAKER_02,,,,,ok
+Carlos Alvarez__2025-04-14__latina_noticias.json,https://youtu.be/Qyhcr_mRBr4?si=CbSglHYTr651QjWT,SPEAKER_02,SPEAKER_03,,,,,ok
+Carlos Alvarez__2025-04-16__madi_streaming.json,https://youtu.be/sCf03Qsocs8?si=1viU3X1xN4auP5rA,SPEAKER_03,SPEAKER_07,SPEAKER_08,SPEAKER_02,,,ok
+Carlos Alvarez__2025-01-19__revista_caretas.json,https://youtu.be/XSlKGdApdQw?si=o7fSasXOEnqC9x3m,SPEAKER_01,SPEAKER_00,,,,,ok
+Phillip Butters__2025-07-04__el_diario_de_curwen.json,https://www.youtube.com/live/ccvbTiQveSs?si=OC67MkZINMTkDHOz,SPEAKER_07,SPEAKER_05,,,,,ok
