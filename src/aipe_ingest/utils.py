@@ -2,6 +2,8 @@
 import pandas as pd
 import json
 import re
+from pathlib import Path
+from aipe_ingest.config import CSV_SOURCES
 
 
 def slugify(text):
@@ -10,7 +12,7 @@ def slugify(text):
     """
     return re.sub(r'[^a-z0-9]+', '_', text.lower()).strip('_')
 
-def load_candidate_interviews(csv_path="candidates/interview_sources.csv"):
+def load_candidate_interviews(csv_path= CSV_SOURCES):
     """
     Load the interview metadata CSV and create a file_base for each entry.
     """
