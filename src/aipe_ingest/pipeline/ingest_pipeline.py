@@ -2,13 +2,11 @@ from pathlib import Path
 import os, pandas as pd
 from dotenv import load_dotenv
 
-from aipe_common.logger    import get_logger
+from aipe_common.logger import get_logger
 from aipe_ingest.components.audio_downloader import AudioDownloader
-from aipe_ingest.components.transcriber      import WhisperXTranscriber
-from aipe_ingest.utils                    import save_as_json
-from aipe_ingest.utils                  import load_candidate_interviews
-from aipe_ingest.config import RAW_DIR, PROC_DIR, CSV_SOURCES 
-
+from aipe_ingest.components.transcriber import WhisperXTranscriber
+from aipe_ingest.utils import save_as_json, load_candidate_interviews
+from aipe_ingest.config import RAW_AUDIO_DIR, RAW_OUTPUT_DIR
 
 log = get_logger(__name__)
 load_dotenv()
@@ -20,14 +18,14 @@ class IngestPipeline:
         ffmpeg_path = os.getenv("FFMPEG_PATH", "C:/ffmpeg/bin")
         self.downloader = AudioDownloader(
             ffmpeg_path=ffmpeg_path,
-            output_dir=Path("datasets/raw/audio"),
+            output_dir=RAW_AUDIO_DIR,
         )
         self.transcriber = WhisperXTranscriber(
             model_name="medium",
             language="es",
             hf_token=os.getenv("HF_AUTH_TOKEN"),
         )
-        self.out_dir = RAW_DIR / "output"
+        self.out_dir = RAW_OUTPUT_DIR
         self.out_dir.mkdir(parents=True, exist_ok=True)
 
 
