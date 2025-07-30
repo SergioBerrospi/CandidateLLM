@@ -6,7 +6,7 @@ import pandas as pd
 from aipe_common.logger import get_logger
 from aipe_common.exception import DataValidationError
 from aipe_ingest.utils import slugify
-from aipe_ingest.config import CSV_SOURCES
+from aipe_ingest.config import CSV_DIARIZE
 
 log = get_logger(__name__)
 
@@ -23,7 +23,7 @@ class TranscriptCleaner:
     def __init__(
         self,
         raw_json_dir: Path,
-        csv_path: CSV_SOURCES, # type: ignore
+        csv_path: CSV_DIARIZE, # type: ignore
         clean_dir: Path,
     ):
         self.raw_dir   = raw_json_dir
@@ -39,13 +39,17 @@ class TranscriptCleaner:
             self._clean_one(row)
 
     def _clean_one(self, row: pd.Series) -> None:
+        if "json_file_name" not in row: 
+            log.warning("CSV row missing 'json_file_name' → skipped")
+            return
+        
         j_path = self.raw_dir / row["json_file_name"]
         if not j_path.exists():
             log.warning("JSON not found: %s", j_path)
             return
 
         try:
-            transcript = json.loads(j_path.read_text(encoding="utf8"))
+            transcript = json.loads(j_path.read_text(encoding="utf-8"))
         except Exception as exc:
             raise DataValidationError(f"Bad JSON: {j_path}") from exc
 
@@ -54,7 +58,7 @@ class TranscriptCleaner:
             seg["role"] = mapping.get(str(seg.get("speaker")), "other")
 
         out_path = self.clean_dir / f"{j_path.stem}_cleaned.json"
-        out_path.write_text(json.dumps(transcript, ensure_ascii=False, indent=2))
+        out_path.write_text(json.dumps(transcript, ensure_ascii=False, indent=2), encoding="utf-8")
         log.info("Cleaned transcript → %s", out_path)
 
     @staticmethod

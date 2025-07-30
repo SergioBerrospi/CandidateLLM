@@ -18,7 +18,7 @@ def load_candidate_interviews(csv_path= CSV_SOURCES):
     """
     df = pd.read_csv(csv_path)
     df["file_base"] = df.apply(
-        lambda row: f"{row['candidate']}__{row['date_interview']}__{slugify(row['source'])}", axis=1
+        lambda row: f"{row['candidate'].strip()}__{row['date_interview']}__{slugify(row['source'])}", axis=1
     )
     return df.to_dict(orient="records")
 

@@ -18,6 +18,7 @@ from aipe_ingest.config import (
     RAW_OUTPUT_DIR,  # datasets/raw/output/
     PROC_CLEAN_DIR,  # datasets/processed/cleaned/
     CSV_SOURCES,
+    CSV_DIARIZE
 )
 
 
@@ -43,8 +44,9 @@ def label(
         RAW_OUTPUT_DIR, help="Folder containing WhisperX JSON files"
     ),
     csv_file: Path = typer.Option(
-        CSV_SOURCES, help="CSV with candidate / interviewer speaker-IDs"
-    ),
+         CSV_DIARIZE,
+         help="CSV (diarize) that has `json_file_name` + speaker IDs",
+     ),
     clean_dir: Path = typer.Option(
         PROC_CLEAN_DIR, help="Destination for *_cleaned.json"
     ),

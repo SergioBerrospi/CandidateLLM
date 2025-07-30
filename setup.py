@@ -24,12 +24,12 @@ setup(
     author='selbver',
     author_email='selbver@gmail.com',
     python_requires='>=3.9',
-   package_dir={"": "src"},
+    package_dir={"": "src"},
     packages=find_packages(where="src", include=["aipe_*"]),
     install_requires=get_requirements('requirements.txt'),
     entry_points={
         'console_scripts': [
-            "aipe-llm=aipe_llm.cli:app",
+            "aipe-ingest = aipe_ingest.cli:app",
         ]
     }
 )
