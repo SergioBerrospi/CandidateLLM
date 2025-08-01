@@ -45,7 +45,7 @@ def _flush(buf: List[str], seg: Dict[str, Any], meta: Dict[str,Any]) -> Dict[str
         "id": str(uuid.uuid4()),
         "text": chunk_text,
         "n_tokens": _token_len(chunk_text),
-        "speaker": seg["speaker"],
+        "role": seg["role"],
         "start": seg["start"],
         "end": seg["end"],
         **meta,
