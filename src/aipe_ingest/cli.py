@@ -9,8 +9,9 @@ aipe-ingest prep    : fetch → label (full preprocessing chain)
 """
 
 from pathlib import Path
-import typer
-
+import typer, pathlib
+import pandas as pd
+from rich.progress import track  
 from aipe_common.logger import get_logger
 from aipe_ingest.pipeline.ingest_pipeline import IngestPipeline
 from aipe_ingest.components.postprocessor import TranscriptCleaner
@@ -20,6 +21,7 @@ from aipe_ingest.config import (
     CSV_SOURCES,
     CSV_DIARIZE
 )
+from aipe_ingest.chunker import run as chunk_one
 
 
 log = get_logger(__name__)
@@ -72,6 +74,30 @@ def prep(
         csv_path=CSV_SOURCES,
         clean_dir=PROC_CLEAN_DIR,
     ).run()
+
+@app.command()
+def chunk_all(
+    input_dir: pathlib.Path = typer.Option(
+        "datasets/processed/cleaned", help="Dir with *_cleaned.json files"
+    ),
+    output: pathlib.Path = typer.Option(
+        "datasets/processed/chunks.parquet", help="Output parquet"
+    ),
+):
+    dfs=[]
+    files=list(input_dir.rglob("*_cleaned.json"))
+    if not files:
+        typer.echo("No '*_cleaned.json' files found")
+        raise typer.Exit(1)
+    
+    for fp in track(files, description="Chunking"):
+        dfs.append(chunk_one(fp))
+
+    master = pd.concat(dfs, ignore_index = True)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    master.to_parquet(output, index=False)
+    typer.echo(f"Saved {len(master):,} chunks -->> {output}")
+
 
 
 if __name__ == "__main__":
