@@ -4,7 +4,7 @@ import pandas as pd
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
-DEFAULT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+DEFAULT_MODEL = "intfloat/multilingual-e5-large"
 
 
 def encode_chunks(in_path, out_path, model_name=DEFAULT_MODEL, batch_size=128):

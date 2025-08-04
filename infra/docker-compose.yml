@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  pgvector:
+    image: ankane/pgvector:latest #Postgres 16 + pgvector
+    container_name: aipe_pgvector
+    restart: unless-stopeed
+    environment:
+      POSTGRES_USER: aipe
+      POSTGRES_PASSWORD: aipe123
+      POSTGRES_DB: aipe
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
