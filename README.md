@@ -157,16 +157,3 @@ Tests are organized under the tests/ directory and include retriever and API int
    git checkout -b feature/your-feature-name
 3. Commit and push your changes.
 4. Open a Pull Request to dev.
-
----
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-## Maintainer
-
-Developed and maintained by the AIPE Engineering Team.  
-For inquiries or collaboration, contact the project maintainer.
