@@ -10,8 +10,8 @@ def query(question, *, candidate, k):
     vec = MODEL.encode([question], normalize_embeddings=True)[0].tolist()
 
     sql = """
-    SELECT id, text, start, end, url,
-           (embedding <=> %(vec)s) AS score
+    SELECT id, text, start, end, video_id,
+           (embedding <=> %(vec)s) AS scorecd 
     FROM   transcript_chunks
     WHERE  (%(cand)s IS NULL OR candidate = %(cand)s)
     ORDER  BY embedding <=> %(vec)s

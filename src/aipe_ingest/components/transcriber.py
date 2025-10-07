@@ -28,7 +28,7 @@ class WhisperXTranscriber:
         try:
             log.info("Transcribing %s", audio_path)
             audio = whisperx.load_audio(audio_path)
-            result = self.model.transcribe(audio, language = self.language)
+            result = self.model.transcribe(audio, language = self.language) 
 
             try: 
                 model_a, meta = whisperx.load_align_model(
@@ -51,4 +51,5 @@ class WhisperXTranscriber:
 
             return final
         except Exception as exc:
+            log.exception("Transcription failed for %s (language=%s, device=%s)", audio_path, self.language, self.device)
             raise TranscriptionError(f"Whisperx failed for {audio_path}") from exc

@@ -1,19 +1,19 @@
-CREATE EXTENSION IF NO EXISTS vector;
+CREATE EXTENSION IF NOT EXISTS vector;
 
 DROP TABLE IF EXISTS transcript_chunks;
 
 CREATE TABLE transcript_chunks (
-    id        UUID PRIMARY KEY,
-    text      TEXT,
-    n_tokens  INT,
-    embedding VECTOR(384),
-    candidate TEXT,
-    role      TEXT,
-    speaker   TEXT,
-    start     REAL,
-    end       REAL,
-    video_id  TEXT,
-    url       TEXT
+    "id"        UUID PRIMARY KEY,
+    "text"      TEXT,
+    "n_tokens"  INT,
+    "embedding" VECTOR(1024),
+    "candidate" TEXT,
+    "role"      TEXT,
+    --"speaker"   TEXT,
+    "start"     REAL,
+    "end"       REAL,
+    "video_id"  TEXT
+    --"url"       TEXT
 );
 
 -- Cosine-distance using HNSW index

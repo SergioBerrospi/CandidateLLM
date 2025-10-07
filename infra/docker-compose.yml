@@ -3,13 +3,13 @@ services:
   pgvector:
     image: ankane/pgvector:latest #Postgres 16 + pgvector
     container_name: aipe_pgvector
-    restart: unless-stopeed
+    restart: unless-stopped
     environment:
       POSTGRES_USER: aipe
       POSTGRES_PASSWORD: aipe123
       POSTGRES_DB: aipe
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 volumes:
